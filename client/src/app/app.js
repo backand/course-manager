@@ -9,8 +9,9 @@
     $urlRouterProvider.otherwise('/');
     $logProvider.debugEnabled(true);
 
-    //BackandProvider.setAnonymousToken('Your Anonymous Token');
-    //BackandProvider.setSignUpToken('Your SignUp Token');
+    BackandProvider.setAppName('eduh1');
+    //BackandProvider.setSignUpToken('0b9bf00e-31f8-4d49-932b-ae0f687bd2d7');
+    BackandProvider.setAnonymousToken('557c10bf-d75a-440e-8281-66712c528be4');
 
     $httpProvider.interceptors.push('httpInterceptor');
     $stateProvider
