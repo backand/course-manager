@@ -58,9 +58,12 @@
     }
 
     vm.updateCourse = function(course){
+      vm.loading = true;
+
       CoursesService.update(course).
         then(function (result) {
           //do something good
+          vm.loading = false;
         })
         .catch(function (reason) {
           // alert

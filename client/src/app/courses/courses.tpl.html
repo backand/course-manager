@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-sm-4">
             <!-- NEW COURSE -->
-            <div class="create course">
+            <div class="create board">
                 <div class="caption">
                     <form
                         name="vm.createForm"
@@ -37,28 +37,30 @@
             </div>
         </div>
 
-
-        <div class="col-sm-4">
-            <div ng-repeat="course in vm.courses">
+        <div class="col-sm-4" ng-repeat="course in vm.courses">
+            <div class="edit board">
+                <div class="pull-right">
+                    <a href="" ng-click="vm.deleteCourse(course.id)">Delete</a>
+                </div>
                 <div>
-                    Name: <input
-                            type="text"
-                            class="medium"
-                            ng-model="course.name"
-                            ng-blur="vm.updateCourse(course)"
-                            placeholder="Course Name">
-                    <a href="" ng-click="vm.deleteCourse(course.id)">X</a>
+                    <input
+                        type="text"
+                        class="medium"
+                        ng-model="course.name"
+                        ng-blur="vm.updateCourse(course)"
+                        placeholder="Course Name">
                 </div>
 
                 <div>
-                    Description: <input type="text"
-                           ng-model="course.description"
-                           ng-blur="vm.updateCourse(course)"
-                           placeholder="Course description.">
+                    <input type="text"
+                       ng-model="course.description"
+                       ng-blur="vm.updateCourse(course)"
+                       placeholder="Course description.">
                 </div>
                 <div>Tasks:</div>
                 <div>{{course.task1}}</div>
                 <div>{{course.task2}}</div>
+                <span ng-show="vm.loading" class="glyphicon glyphicon-refresh"></span>
             </div>
         </div>
     </div>
