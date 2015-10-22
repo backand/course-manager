@@ -1,33 +1,9 @@
 (function() {
   'use strict';
 
-  angular
-    .module('templates', [])
-    .config(config)
-    .controller('CoursesCtrl', ['CoursesService','coursesList', CoursesCtrl]);
+  angular.module('app')
+    .controller('CoursesCtrl', ['CoursesService', 'coursesList', CoursesCtrl]);
 
-  /**
-   * @name  config
-   * @description config block
-   */
-  function config($stateProvider) {
-    $stateProvider
-      .state('root.courses', {
-        url: '/courses',
-        views: {
-          '@': {
-            templateUrl: 'src/app/courses/courses.tpl.html',
-            controller: 'CoursesCtrl',
-            controllerAs: 'vm',
-            resolve: {
-              coursesList: function(CoursesService) {
-                return CoursesService.list();
-              }
-            }
-          }
-        }
-      });
-  }
 
   /**
    * @name  CoursesController
@@ -49,7 +25,7 @@
       )
     }
 
-    vm.createCourse = function(course, isValid){
+    vm.createCourse = function(course, isValid) {
       if (isValid) {
         CoursesService.create(course)
           .then(function (result) {
@@ -61,7 +37,7 @@
             console.log(reason);
           });
       }
-    }
+    };
 
     vm.updateCourse = function(course){
       vm.loading = true;
@@ -75,7 +51,7 @@
           // alert
           console.log(reason);
         });
-    }
+    };
 
     vm.deleteCourse = function(id){
       CoursesService.destroy(id).

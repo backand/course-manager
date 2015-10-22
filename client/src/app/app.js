@@ -6,7 +6,7 @@
   });
 
   function config(BackandProvider, $stateProvider, $urlRouterProvider, $logProvider, $httpProvider) {
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/courses');
     $logProvider.debugEnabled(true);
 
     BackandProvider.setAppName('eduh1');
@@ -25,6 +25,36 @@
           'footer': {
             templateUrl: 'src/common/footer.tpl.html',
             controller: 'FooterCtrl'
+          }
+        }
+      })
+      .state('root.tasks', {
+        url: 'courses/:courseId/tasks',
+        views: {
+          '@': {
+            templateUrl: 'src/app/tasks/tasks.tpl.html',
+            controller: 'TasksCtrl',
+            controllerAs: 'vm',
+            resolve: {
+              tasksList: function(CoursesService, $stateParams) {
+                return CoursesService.getTasks($stateParams.courseId);
+              }
+            }
+          }
+        }
+      })
+      .state('root.courses', {
+        url: '/courses',
+        views: {
+          '@': {
+            templateUrl: 'src/app/courses/courses.tpl.html',
+            controller: 'CoursesCtrl',
+            controllerAs: 'vm',
+            resolve: {
+              coursesList: function(CoursesService) {
+                return CoursesService.list();
+              }
+            }
           }
         }
       });
@@ -50,7 +80,6 @@
       'common.directives.version',
       'common.filters.uppercase',
       'common.interceptors.http',
-      'templates'
     ])
     .config(config)
     .run(run)

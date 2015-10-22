@@ -1,46 +1,21 @@
 (function() {
   'use strict';
+  angular.module('app')
+    .controller('TasksCtrl',['CoursesService', 'TasksService', 'tasksList', '$stateParams', TasksCtrl]);
 
-  angular
-    .module('templates', [])
-    .config(config)
-    .controller('TasksCtrl',['CoursesService', 'TasksService', 'tasksList', TasksCtrl]);
-
-  /**
-   * @name  config
-   * @description config block
-  // */
-  function config($stateProvider) {
-    $stateProvider
-        .state('root.tasks', {
-          url: 'courses/:courseId/tasks',
-          views: {
-            '@': {
-              templateUrl: 'src/app/tasks/tasks.tpl.html',
-              controller: 'TasksCtrl',
-              controllerAs: 'vm',
-              resolve: {
-                tasksList: function(CoursesService) {
-                  return CoursesService.getTasks(1);
-                }
-              }
-            }
-          }
-        });
-  }
 
   /**
    * @name  HomeCtrl
    * @description Controller
    */
-  function TasksCtrl(CoursesService, TasksService, tasksList) {
+  function TasksCtrl(CoursesService, TasksService, tasksList, $stateParams) {
     var vm = this;
 
     //get the tasks fro the specific course
-    vm.tasks = coursesList.data.data;
+    vm.tasks = tasksList.data.data;
 
     function readCourses(){
-      CoursesService.getTasks(1).then(
+      CoursesService.getTasks($stateParams.courseId).then(
           function(tasks){
             vm.courses = tasks.data.data;
           }
