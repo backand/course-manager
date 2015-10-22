@@ -4,7 +4,7 @@
   angular
     .module('templates', [])
     .config(config)
-    .controller('CoursesController', ['CoursesService', CoursesController]);
+    .controller('CoursesCtrl', ['CoursesService','coursesList', CoursesCtrl]);
 
   /**
    * @name  config
@@ -17,8 +17,13 @@
         views: {
           '@': {
             templateUrl: 'src/app/courses/courses.tpl.html',
-            controller: 'CoursesController',
-            controllerAs: 'vm'
+            controller: 'CoursesCtrl',
+            controllerAs: 'vm',
+            resolve: {
+              coursesList: function(CoursesService) {
+                return CoursesService.list();
+              }
+            }
           }
         }
       });
@@ -28,12 +33,13 @@
    * @name  CoursesController
    * @description Controller
    */
-  function CoursesController (CoursesService){
+  function CoursesCtrl (CoursesService, coursesList){
 
     var vm = this;
     vm.courses = null;
 
-    readCourses();
+    //get the courses from the resolve
+    vm.courses = coursesList.data.data;
 
     function readCourses(){
       CoursesService.list().then(

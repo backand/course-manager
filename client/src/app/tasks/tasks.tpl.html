@@ -8,22 +8,22 @@
                         name="vm.createForm"
                         class="create-form"
                         role="form"
-                        ng-submit="vm.createCourse(vm.newCourse, vm.createForm.$valid)"
+                        ng-submit="vm.createTask(vm.newTask, vm.createForm.$valid)"
                         novalidate>
                         <fieldset>
                             <div>
                                 <input
                                     type="text"
                                     class="medium"
-                                    ng-model="vm.newCourse.name"
-                                    placeholder="Course Name"
+                                    ng-model="vm.newCourse.description"
+                                    placeholder="Task Description"
                                     required>
                             </div>
                             <div>
                                 <input
-                                    type="text"
-                                    ng-model="vm.newCourse.description"
-                                    placeholder="what's it about?"
+                                    type="date"
+                                    ng-model="vm.newCourse.dueDate"
+                                    placeholder="When is the due date?"
                                     required>
                             </div>
                         </fieldset>
@@ -37,31 +37,26 @@
             </div>
         </div>
 
-        <div class="col-sm-4" ng-repeat="course in vm.courses">
+        <div class="col-sm-4" ng-repeat="task in vm.tasks">
             <div class="edit board">
                 <div class="pull-right">
-                    <a href="" ng-click="vm.deleteCourse(course.id)">Delete</a>
+                    <a href="" ng-click="vm.deleteTask(task.id)">Delete</a>
                 </div>
                 <div>
                     <input
                         type="text"
                         class="medium"
-                        ng-model="course.name"
-                        ng-blur="vm.updateCourse(course)"
-                        placeholder="Course Name">
+                        ng-model="task.description"
+                        ng-blur="vm.updateTask(task)"
+                        placeholder="Task Description">
                 </div>
 
                 <div>
-                    <input type="text"
-                       ng-model="course.description"
-                       ng-blur="vm.updateCourse(course)"
-                       placeholder="Course description.">
+                    <input type="date"
+                       ng-model="task.dueDate"
+                       ng-blur="vm.updateTask(task)"
+                       placeholder="Task due date.">
                 </div>
-                <!--<a href ui-sref="root.coures.root.tasks({courseId: course.id})">Tasks</a>-->
-                <a href="/#/tasks?courseId={{course.id}}">Tasks</a>
-                <!--<div>Tasks:</div>-->
-                <!--<div>{{course.task1}}</div>-->
-                <!--<div>{{course.task2}}</div>-->
                 <span ng-show="vm.loading" class="glyphicon glyphicon-refresh"></span>
             </div>
         </div>

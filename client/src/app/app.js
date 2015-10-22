@@ -16,6 +16,7 @@
     $httpProvider.interceptors.push('httpInterceptor');
     $stateProvider
       .state('root', {
+        abstract: true,
         views: {
           'header': {
             templateUrl: 'src/common/header.tpl.html',
