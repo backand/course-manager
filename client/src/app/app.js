@@ -28,21 +28,6 @@
           }
         }
       })
-      .state('root.tasks', {
-        url: 'courses/:courseId/tasks',
-        views: {
-          '@': {
-            templateUrl: 'src/app/tasks/tasks.tpl.html',
-            controller: 'TasksCtrl',
-            controllerAs: 'vm',
-            resolve: {
-              tasksList: function(CoursesService, $stateParams) {
-                return CoursesService.getTasks($stateParams.courseId);
-              }
-            }
-          }
-        }
-      })
       .state('root.courses', {
         url: '/courses',
         views: {
@@ -53,6 +38,22 @@
             resolve: {
               coursesList: function(CoursesService) {
                 return CoursesService.list();
+              }
+            }
+          }
+        }
+      })
+      .state('root.tasks', {
+        parent: 'root.courses',
+        url: '/:courseId/tasks',
+        views: {
+          '@': {
+            templateUrl: 'src/app/tasks/tasks.tpl.html',
+            controller: 'TasksCtrl',
+            controllerAs: 'vm',
+            resolve: {
+              tasksList: function(CoursesService, $stateParams) {
+                return CoursesService.getTasks($stateParams.courseId);
               }
             }
           }
