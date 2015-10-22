@@ -3,7 +3,7 @@
 
   angular
       .module('common.services.data')
-      .factory('CoursesService', ['$http', 'Backand', coursesService]);
+      .factory('CoursesService', ['$http',' Backand', coursesService]);
 
   function coursesService($http, Backand) {
 
