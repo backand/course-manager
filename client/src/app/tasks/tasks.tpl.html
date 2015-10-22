@@ -15,14 +15,14 @@
                                 <input
                                     type="text"
                                     class="medium"
-                                    ng-model="vm.newCourse.description"
+                                    ng-model="vm.newTask.description"
                                     placeholder="Task Description"
                                     required>
                             </div>
                             <div>
                                 <input
                                     type="date"
-                                    ng-model="vm.newCourse.dueDate"
+                                    ng-model="vm.newTask.dueDate"
                                     placeholder="When is the due date?"
                                     required>
                             </div>
@@ -54,6 +54,7 @@
                 <div>
                     <input type="date"
                        ng-model="task.dueDate"
+                       ng-value="task.dueDate | date:'yyyy-MM-dd'"
                        ng-blur="vm.updateTask(task)"
                        placeholder="Task due date.">
                 </div>

@@ -1,10 +1,29 @@
 (function() {
   'use strict';
 
-  angular.module('app')
-    .controller('CoursesCtrl', ['CoursesService', 'coursesList', CoursesCtrl]);
+  angular
+      .module('app')
+      .config(config)
+      .controller('CoursesCtrl', ['CoursesService', 'coursesList', CoursesCtrl]);
 
-
+  function config($stateProvider) {
+    $stateProvider
+      .state('root.courses', {
+        url: '/courses',
+        views: {
+          '@': {
+            templateUrl: 'src/app/courses/courses.tpl.html',
+            controller: 'CoursesCtrl',
+            controllerAs: 'vm',
+            resolve: {
+              coursesList: function (CoursesService) {
+                return CoursesService.list();
+              }
+            }
+          }
+        }
+      })
+  }
   /**
    * @name  CoursesController
    * @description Controller

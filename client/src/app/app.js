@@ -14,6 +14,7 @@
     BackandProvider.setAnonymousToken('557c10bf-d75a-440e-8281-66712c528be4');
 
     $httpProvider.interceptors.push('httpInterceptor');
+
     $stateProvider
       .state('root', {
         abstract: true,
@@ -25,37 +26,6 @@
           'footer': {
             templateUrl: 'src/common/footer.tpl.html',
             controller: 'FooterCtrl'
-          }
-        }
-      })
-      .state('root.courses', {
-        url: '/courses',
-        views: {
-          '@': {
-            templateUrl: 'src/app/courses/courses.tpl.html',
-            controller: 'CoursesCtrl',
-            controllerAs: 'vm',
-            resolve: {
-              coursesList: function(CoursesService) {
-                return CoursesService.list();
-              }
-            }
-          }
-        }
-      })
-      .state('root.tasks', {
-        parent: 'root.courses',
-        url: '/:courseId/tasks',
-        views: {
-          '@': {
-            templateUrl: 'src/app/tasks/tasks.tpl.html',
-            controller: 'TasksCtrl',
-            controllerAs: 'vm',
-            resolve: {
-              tasksList: function(CoursesService, $stateParams) {
-                return CoursesService.getTasks($stateParams.courseId);
-              }
-            }
           }
         }
       });

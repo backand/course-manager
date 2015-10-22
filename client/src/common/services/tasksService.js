@@ -40,7 +40,7 @@
 
     //update object's data
     function update(object) {
-      return $http.put(getUrlForId(object.id)+'?deep=true', object);
+      return $http.put(getUrlForId(object.id), object);
     }
 
     //delete object

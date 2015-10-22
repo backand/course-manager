@@ -40,7 +40,7 @@
 
     //update course data
     function update(course) {
-      return $http.put(getUrlForId(course.id)+'?deep=true', course);
+      return $http.put(getUrlForId(course.id), course);
     }
 
     //delete course
@@ -50,7 +50,14 @@
 
     //get tasks
     function getTasks(courseId){
-      return $http.get(getUrl() + '/' + courseId + '/tasks');
+      return $http.get(getUrl() + '/' + courseId + '/tasks').then(
+          function(tasks){
+            tasks.data.data.forEach(function(task){
+              task.dueDate = new Date(task.dueDate);
+            })
+            return tasks;
+          }
+      );
     }
 
   }
