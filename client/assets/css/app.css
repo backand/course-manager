@@ -7,6 +7,14 @@ body {
     min-height: 100%;
 }
 
+.bg-gray {
+    background: url(../../assets/images/bg-gray.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 .bg-purple {
     background: url(../../assets/images/bg.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -244,7 +252,7 @@ a.view:hover, a.view:focus {
     margin:20px auto;
     padding: 10px;
     background: white;
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 5px 3px 0 rgba(0,0,0,0.3);
     position: relative;
 }
 
@@ -279,7 +287,7 @@ a.view:hover, a.view:focus {
     position: absolute;
     bottom: 0;
     left: 0;
-    background: rgb(80, 35, 120);
+    background: rgb(242, 101, 34);
     border-radius: 0px;
     width: 100%;
     border: none;
@@ -310,7 +318,7 @@ a.view:hover, a.view:focus {
     width: 100%;
     resize: none;
     background-color: #f5f5f5;
-    margin-bottom: 2px;
+    margin-bottom: 5px;
 }
 
 .create input[type=text], .create textarea {
