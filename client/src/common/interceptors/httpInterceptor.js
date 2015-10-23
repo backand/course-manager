@@ -3,17 +3,24 @@
 
   function httpInterceptor($q, $log) {
     return {
-
-      requestError: function(rejection) {
-        $log.debug(rejection);
+      requestError: function (rejection) {
         return $q.reject(rejection);
       },
-      response: function(response) {
-        $log.debug('response: ', response);
+      response: function (response) {
         return response;
       },
-      responseError: function(rejection) {
-        $log.debug(rejection);
+      responseError: function (rejection) {
+        if ((rejection.config.url + "").indexOf('token') === -1) {
+          // When using refresh token, on 401 responses
+          // Backand SDK manages refreshing the session and re-sending the requests
+          if (rejection.status === 401 && !Backand.isManagingRefreshToken()) {
+            var errorMessage =
+                Backand.getUsername() ?
+                    'The session has expired, please sign in again.' :
+                    null;
+            $injector.get('$state').go('login', {error: errorMessage}, {reload: true});
+          }
+        }
         return $q.reject(rejection);
       }
     };
