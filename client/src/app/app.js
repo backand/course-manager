@@ -6,7 +6,7 @@
   });
 
   function config(BackandProvider, $stateProvider, $urlRouterProvider, $logProvider, $httpProvider) {
-    $urlRouterProvider.otherwise('/courses');
+    $urlRouterProvider.otherwise('/');
     $logProvider.debugEnabled(true);
 
     BackandProvider.setAppName('eduh1');

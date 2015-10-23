@@ -32,6 +32,7 @@
 
     var vm = this;
     vm.courses = null;
+    vm.loading = [];
 
     //get the courses from the resolve
     vm.courses = coursesList.data.data;
@@ -58,13 +59,13 @@
       }
     };
 
-    vm.updateCourse = function(course){
-      vm.loading = true;
+    vm.updateCourse = function(course, index){
+      vm.loading[index] = true;
 
       CoursesService.update(course).
         then(function (result) {
           //do something good
-          vm.loading = false;
+          vm.loading[index] = false;
         })
         .catch(function (reason) {
           // alert

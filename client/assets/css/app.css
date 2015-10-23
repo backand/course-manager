@@ -2,6 +2,10 @@ html, body {
     height: 100%;
 }
 
+p,h1,h2,h3,h4{
+    color:white;
+}
+
 body {
     font-family: "Open Sans","lucida grande","Segoe UI",arial,verdana,"lucida sans unicode",tahoma,sans-serif;
     min-height: 100%;

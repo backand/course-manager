@@ -19,6 +19,7 @@
                                     placeholder="Course Name"
                                     required>
                             </div>
+                            <br/>
                             <div>
                                 <input
                                     type="text"
@@ -47,15 +48,16 @@
                         type="text"
                         class="medium"
                         ng-model="course.name"
-                        ng-blur="vm.updateCourse(course)"
+                        ng-blur="vm.updateCourse(course, $index)"
                         placeholder="Course Name">
                 </div>
-
+                <br/>
                 <div>
-                    <input type="text"
+                    <textarea
+                       style="height:60px;"
                        ng-model="course.description"
-                       ng-blur="vm.updateCourse(course)"
-                       placeholder="Course description.">
+                       ng-blur="vm.updateCourse(course, $index)"
+                       placeholder="Course description."></textarea>
                 </div>
                 <button
                       type="submit"
@@ -65,7 +67,7 @@
                 <!--<div>Tasks:</div>-->
                 <!--<div>{{course.task1}}</div>-->
                 <!--<div>{{course.task2}}</div>-->
-                <span ng-show="vm.loading" class="glyphicon glyphicon-refresh"></span>
+                <span ng-show="vm.loading[$index]" class="glyphicon glyphicon-refresh"></span>
             </div>
         </div>
     </div>

@@ -1,6 +1,8 @@
 <div class="container">
-    <div class="row">
-        <div class="col-sm-4">
+  <h4><a ui-sref="root.courses">Back to Courses</a></h4>
+
+  <div class="row">
+      <div class="col-sm-4">
             <!-- NEW COURSE -->
             <div class="create board">
                 <div class="caption">
@@ -14,14 +16,17 @@
                             <div>
                                 <input
                                     type="text"
-                                    class="medium"
+                                    class="medium form-group"
                                     ng-model="vm.newTask.description"
                                     placeholder="Task Description"
                                     required>
                             </div>
+
                             <div>
+                              <label>Due Date:</label>
                                 <input
                                     type="date"
+                                    class="form-group" style="width:250px;"
                                     ng-model="vm.newTask.dueDate"
                                     placeholder="When is the due date?"
                                     required>
@@ -50,7 +55,7 @@
                         ng-blur="vm.updateTask(task)"
                         placeholder="Task Description">
                 </div>
-
+                <br/>
                 <div>
                     <input type="date"
                        ng-model="task.dueDate"
@@ -58,6 +63,15 @@
                        ng-blur="vm.updateTask(task)"
                        placeholder="Task due date.">
                 </div>
+                <br/>
+                <div>
+                    <input type="checkbox"
+                       ng-model="task.completed"
+                       ng-blur="vm.updateTask(task)"
+                       placeholder="Task due date.">
+                    <label>Completed ?</label>
+                </div>
+
                 <span ng-show="vm.loading" class="glyphicon glyphicon-refresh"></span>
             </div>
         </div>
