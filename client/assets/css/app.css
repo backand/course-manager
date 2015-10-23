@@ -1,10 +1,21 @@
 html, body {
     height: 100%;
 }
+p, label, h1, h2, h3, h4, h5{
+    color: white;
+}
 
 body {
     font-family: "Open Sans","lucida grande","Segoe UI",arial,verdana,"lucida sans unicode",tahoma,sans-serif;
     min-height: 100%;
+}
+
+.bg-gray {
+    background: url(../../assets/images/bg-gray.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .bg-purple {
